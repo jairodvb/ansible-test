@@ -1,0 +1,9 @@
+---
+- name: Installing packages...
+  hosts: Flask
+  roles:
+    - git
+    - python
+    - mysql
+
+
