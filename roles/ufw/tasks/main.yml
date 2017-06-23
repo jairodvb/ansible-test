@@ -1,0 +1,43 @@
+- name: installing packages
+  become: yes
+  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=604800
+  with_items:
+    - ufw
+
+- name : Turn on Firewall
+  ufw:
+    state: enabled
+    policy: allow
+
+
+- name : Allowing SSH port
+  ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name : Allowing port http (port 80)
+  ufw :
+    rule: allow
+    port: 80
+    proto: tcp
+
+- name : Allowing port http (port 8000)
+  ufw :
+    rule: allow
+    port: 8000
+    proto: tcp
+
+- name: Deny DNS service tcp (port 53)
+  ufw:
+    rule: deny
+    port: 53
+    proto : tcp
+
+- name: Deny DNS service udp (port 53)
+  ufw:
+    rule: deny
+    port: 53
+    proto : udp
+
+

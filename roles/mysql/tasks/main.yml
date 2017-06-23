@@ -1,3 +1,9 @@
+- name: Install MYSQL
+  become: yes
+  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=604800
+  with_items:
+    - mysql-server
+
 - name: Create a database to save the information
   mysql_db:
     name: '{{database_name}}'

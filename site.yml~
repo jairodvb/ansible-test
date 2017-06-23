@@ -1,0 +1,11 @@
+---
+- name: Installing packages...
+  hosts: Flask
+  roles:
+    - git
+    - python
+    - mysql
+    - ufw
+    - gunicorn-nginx
+
+

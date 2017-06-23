@@ -1,0 +1,14 @@
+---
+- name: Install python packages
+  become: yes
+  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=604800
+  with_items:
+    - python-pip
+    - python-dev
+    - python-mysqldb
+
+- name: install python requirements
+  become: yes
+  pip: 
+   requirements: '{{ install_root }}requirements.txt'
+

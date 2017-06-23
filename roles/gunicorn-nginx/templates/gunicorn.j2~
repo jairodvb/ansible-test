@@ -1,0 +1,13 @@
+escription "Gunicorn application server handling Flask"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+setuid www-data
+setgid www-data
+chdir /home/project-asinble/Flask
+
+env PYTHONPATH=/home/project-asinble/Flask:/home/project-asinble/Flask/PythonApp
+
+exec /usr/bin/gunicorn --workers 3 --bind 104.131.166.11:8000 Flask.wsgi:application

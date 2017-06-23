@@ -4,6 +4,8 @@
   roles:
     - git
     - python
-    - mysql
+    #- mysql
+    - ufw
+    - gunicorn-nginx
 
 

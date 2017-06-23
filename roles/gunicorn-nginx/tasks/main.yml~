@@ -1,0 +1,51 @@
+---
+- name: Install the latest version of gunicorn
+  apt: 
+    pkg: gunicorn 
+    state: latest
+
+- name: Install the latest version of nginx
+  apt: 
+    pkg: nginx 
+    state: latest
+
+- name: copy nginx config
+  template: 
+    src: nginx.j2 
+    dest: /etc/nginx/conf.d/Flask.conf
+
+- name: copy nginx config
+  template: 
+    src: nginx.j2 
+    dest: /etc/nginx/sites-enabled/Flask.conf
+
+- name: copy nginx config
+  template: 
+    src: nginx.j2 
+    dest: /etc/nginx/sites-available/Flask.conf
+
+- name: restart nginx
+  service: 
+    name: nginx 
+    state: restarted
+
+- name: copy gunicorn config
+  template: 
+    src: gunicorn.j2 
+    dest: /etc/init/gunicorn.conf
+
+
+- name: remove default nginx site
+  file: 
+    path: /etc/nginx/sites-enabled/default 
+    state: absent
+
+
+- name: Deploy app
+  become: yes
+  command: gunicorn aplicacion:app -p app.pid -b 0.0.0.0:80 -D
+  args:
+    chdir: /home/project
+
+
+

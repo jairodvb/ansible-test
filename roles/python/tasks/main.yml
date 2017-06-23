@@ -6,6 +6,7 @@
     - python-pip
     - python-dev
     - python-mysqldb
+    - gunicorn
 
 - name: install python requirements
   become: yes

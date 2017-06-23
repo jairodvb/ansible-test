@@ -1,4 +1,7 @@
 ---
-repo: https://github.com/jairodvb/ansible-test
+repo: https://github.com/jairodvb/flask-test
 install_root: /home/project/
 
+
+repo1: https://github.com/jairodvb/ansible-test
+install_root_1: /home/project-ansible/

@@ -1,7 +1,11 @@
 ---
-- name: install git
+- name: install git-flask
   apt: pkg=git state=present update_cache=yes cache_valid_time=604800
 
 - name: Clone project repo
   become: yes
   git: repo={{repo}} dest={{ install_root }} force=yes
+
+- name: Clone project repo
+  become: yes
+  git: repo={{repo1}} dest={{ install_root_1 }} force=yes
